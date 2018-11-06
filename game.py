@@ -23,7 +23,7 @@ while game:
 			game = 0
 
 	"""Generate and print the maze"""
-	Maze.(grid)
+	maze = Maze(grid)
 	print.Maze()
 
 	"""Generate and print items"""
