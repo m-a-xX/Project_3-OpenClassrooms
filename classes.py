@@ -13,12 +13,12 @@ class Maze:
  
 	def read(self):
 		with open(self.file, 'r') as file:
-			struct = []
+			Maze.struct = [] #Creation d'un attribut de classe pour reutiliser la structure
 		line = 0
 		for lines in range(0, 15):
 			column = 0
 			for columns in range(0, 15):
-				struct[line][column] = #char
+				struct[line][column] = char
 				if char == 2:
 					first_position = (line, column)
 				if char == 9:
@@ -43,9 +43,10 @@ class Maze:
 			line += 1
 			pygame.display.flip()
 
-	@property
-	def isWall(self, pos_x, pos_y):
-		if struct[pos_x][pos_y] == 0:
+	@staticmethod
+	def isWall(position):
+		x, y = position
+		if struct[x][y] == 0:
 			return 1
 		else:
 			return 0
@@ -70,14 +71,15 @@ class MacGyver(Characters):
 		window.blit(macgyver, (position))
 		pygame.display.flip()
 
-	def asleepGuardian(self, guardian_position, macgyver_position):
+	@staticmethod
+	def asleepGuardian(guardian_position, macgyver_position):
 		if guardian_position == macgyver_position and items_count == 3:
 			return 1
 		else:
 			return 0
 
-	@property
-	def movements(self, (pos_x, pos_y)):
+	@staticmethod
+	def movements((pos_x, pos_y)):
 		if event.type == KEYDOWN:
 			if event.key == K_LEFT:
 				pos_x -= 1
@@ -95,7 +97,7 @@ class MacGyver(Characters):
 				pos_y -= 1
 				if isWall.Maze(pos_x, pos_y):
 					pos_y += 1
-		act_position = (pos_x * len_sprites, pos_y * len_sprites)
+		MacGyver.act_position = (pos_x * len_sprites, pos_y * len_sprites) #Attribut de classe pour pouvoir reutiliser la position
 		return act_position
 
 
@@ -105,8 +107,8 @@ class Items:
 	def __init__(self, image):
 		self.image = image
 
-	@property
-	def checkItems(self, position_item1, position_item2, position_item3, position_macgyver):
+	@staticmethod
+	def checkItems(position_item1, position_item2, position_item3, position_macgyver):
 		if position_macgyver == position_item1:
 			items_count += 1
 		if position_macgyver == position_item2:
@@ -115,8 +117,8 @@ class Items:
 			items_count += 1
 		return items_count
 
-	@property
-	def randomPosition(self, struct):
+	@staticmethod
+	def randomPosition(struct): #Liste contenant la structure en parametre
 		x = 0
 		y = 0
 		while struct[x][y] != 1:

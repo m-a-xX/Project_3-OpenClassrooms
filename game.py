@@ -44,14 +44,3 @@ while game:
 		checkItems.Items(item1_pos, item2_pos, item3_pos, act_position)
 		if asleepGuardian.MacGyver(guardian_position, act_position):
 			win = 1
-
-
-
-"""
-	def create_grid(nb_lines, nb_colums):
-	grid = [[]] * nb_lines
-	for line in range(nb_lines):
-		grid[line] = [0] * nb_colums
-	return grid
-
-	grid = create_grid(15, 15)"""
