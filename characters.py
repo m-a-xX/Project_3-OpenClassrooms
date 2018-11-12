@@ -56,15 +56,14 @@ class MacGyver(Characters):
 				if event.key == K_UP:
 					pos_x -= 1
 					if Maze.isWall((pos_x, pos_y)):
-						pos_x -= 1
+						pos_x += 1
 				if event.key == K_DOWN:
 					pos_x += 1
 					if Maze.isWall((pos_x, pos_y)):
-						pos_x += 1
+						pos_x -= 1
 		MacGyver.act_position = (pos_x, pos_y)
 		MacGyver.pix_position = (pos_y * len_sprites, pos_x * len_sprites)
 		if MacGyver.act_position != position:
 			MacGyver.old_position = position
 		else:
 			MacGyver.old_position = 0
-		#return (pos_y * len_sprites, pos_x * len_sprites)
