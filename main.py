@@ -33,7 +33,7 @@ while game:
 			game = 0
 
 	"""Print the maze"""
-	maze.print()
+	maze.display()
 	pygame.display.flip()
 
 
@@ -56,5 +56,7 @@ while game:
 			pygame.time.wait(5000)
 			pygame.display.quit()
 			pygame.quit()
+	MacGyver.movements((MacGyver.act_position))
+	MacGyver.printMg((MacGyver.pix_position))
 
 pygame.quit()

@@ -22,7 +22,7 @@ class Maze:
 				Maze.struct.append(lines)
 			self.structure = Maze.struct
 		
-	def print(self):
+	def display(self):
 		for line in range(0, 15):
 			for column in range(0, 15):
 				if int(Maze.struct[line][column]) == 0:
