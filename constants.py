@@ -24,6 +24,8 @@ item_2_o = pygame.image.load("pictures/ether.png").convert_alpha()
 item_2 = pygame.transform.smoothscale(item_2_o, (len_sprites, len_sprites))
 item_3_o = pygame.image.load("pictures/tube_plastique.png").convert_alpha()
 item_3 = pygame.transform.smoothscale(item_3_o, (len_sprites, len_sprites))
+youwin = pygame.image.load("pictures/youwin.png").convert()
+youlost = pygame.image.load("pictures/youlost.png").convert()
 
 """Window"""
 window = pygame.display.set_mode((side_window, side_window))

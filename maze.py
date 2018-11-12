@@ -29,9 +29,6 @@ class Maze:
 					window.blit(wall, (column * len_sprites, line * len_sprites))
 				if int(Maze.struct[line][column]) == 9:
 					window.blit(guardian, (column * len_sprites, line * len_sprites))
-				if int(Maze.struct[line][column]) == 2:
-					window.blit(macgyver, (column * len_sprites, line * len_sprites))
-					Maze.mac_first = (line, column)
 
 	@staticmethod
 	def isWall(position):

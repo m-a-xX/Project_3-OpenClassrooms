@@ -8,34 +8,34 @@ from maze import *
 """Manage the items"""
 class Items:
 
-	items_count = 0
-
+	got_i1 = 0
+	got_i2 = 0
+	got_i3 = 0
+	
 	def __init__(self, image):
 		self.image = image
 
 	@staticmethod
 	def checkItems(position_item1, position_item2, position_item3, position_macgyver):
-		Items.got_item1 = 0
-		Items.got_item2 = 0
-		Items.got_item3 = 0
-		if position_macgyver == position_item1:
-			Items.items_count += 1
-			Items.got_item1 = 1
-		if position_macgyver == position_item2:
-			Items.items_count += 1
-			Items.got_item2 = 1
-		if position_macgyver == position_item3:
-			Items.items_count += 1
-			Items.got_item3 = 1
-		if Items.got_item1 == 0:
+		y, x = position_macgyver
+		x = x * 40
+		y = y * 40
+		mg_pixpos = (x, y)
+		if mg_pixpos == position_item1:
+			Items.got_i1 = 1
+		if mg_pixpos == position_item2:
+			Items.got_i2 = 1
+		if mg_pixpos == position_item3:
+			Items.got_i3 = 1
+		if Items.got_i1 == 0:
 			window.blit(item_1, (position_item1))
 		else:
 			window.blit(black_sprite, (position_item1))
-		if Items.got_item2 == 0:
+		if Items.got_i2 == 0:
 			window.blit(item_2, (position_item2))
 		else:
 			window.blit(black_sprite, (position_item2))
-		if Items.got_item3 == 0:
+		if Items.got_i3 == 0:
 			window.blit(item_3, (position_item3))
 		else:
 			window.blit(black_sprite, (position_item3))

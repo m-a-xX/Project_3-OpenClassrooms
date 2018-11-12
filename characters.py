@@ -3,6 +3,7 @@ from pygame.locals import *
 
 from constants import *
 from maze import *
+from items import *
 
 pygame.init()
 
@@ -14,10 +15,15 @@ class Characters:
 		self.dep_y = dep_y
 		self.image = image
 
-	def firstPosition(self, position):
-		dep_x, dep_y = position #Separation of the 2 values of the "position" tuple
-		first_position = ((dep_x * len_sprites), (dep_y * len_sprites))
-		return first_position
+
+class Guardian(Characters):
+
+	@staticmethod
+	def findGuardian():
+		for x in range(0, 15):
+			for y in range (0, 15):
+				if int(Maze.struct[x][y]) == 9:
+					return ((x, y))
 
 
 """Child class of Characters for all specifics things to MacGyver"""
@@ -35,11 +41,14 @@ class MacGyver(Characters):
 
 	@staticmethod
 	def asleepGuardian(guardian_position, macgyver_position):
-		if guardian_position == macgyver_position and Items.items_count == 3:
-			return 1
-		else:
+		if not guardian_position == macgyver_position:
 			return 0
-
+		if guardian_position == macgyver_position:
+			if Items.got_i1 and Items.got_i2 and Items.got_i3:
+				return 1
+			else:
+				return 2
+				
 	@staticmethod
 	def movements(position):
 		pos_x, pos_y = position
@@ -67,3 +76,10 @@ class MacGyver(Characters):
 			MacGyver.old_position = position
 		else:
 			MacGyver.old_position = 0
+
+	@staticmethod
+	def findMacgyver():
+		for x in range(0, 15):
+			for y in range (0, 15):
+				if int(Maze.struct[x][y]) == 2:
+					return ((x, y))
