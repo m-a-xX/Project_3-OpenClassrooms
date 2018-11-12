@@ -13,40 +13,30 @@ class Maze:
  
 	def read(self):
 		with open(self.file, 'r') as file:
-			Maze.struct = [] #Creation d'un attribut de classe pour reutiliser la structure
-		line = 0
-		for lines in range(0, 15):
-			column = 0
-			for columns in range(0, 15):
-				struct[line][column] = char
-				if char == 2:
-					first_position = (line, column)
-				if char == 9:
-					guardian_position = (line, column)
-				column += 1
-			line += 1
+			Maze.struct = []
+			for line in file:
+				lines = []
+				for char in line:
+					if char != '\n':
+						lines.append(char)
+				Maze.struct.append(lines)
+			self.structure = Maze.struct
 		
 	def print(self):
-		window.blit(background, [0,0])
-		pygame.display.flip()
-		line = 0
-		for lines in range(0, 15):
-			column = 0
-			for columns in range(0, 15):
-				if struct[line][column] == 0:
-					window.blit(wall, (line * len_sprites, column * len_sprites))
-				if struct[line][column] == 9:
-					window.blit(guardian, (line * len_sprites, column * len_sprites))
-				if struct[line][column] == 2:
-					window.blit(macgyver, (line * len_sprites, column * len_sprites))					
-				column += 1
-			line += 1
-			pygame.display.flip()
+		for line in range(0, 15):
+			for column in range(0, 15):
+				if int(Maze.struct[line][column]) == 0:
+					window.blit(wall, (column * len_sprites, line * len_sprites))
+				if int(Maze.struct[line][column]) == 9:
+					window.blit(guardian, (column * len_sprites, line * len_sprites))
+				if int(Maze.struct[line][column]) == 2:
+					window.blit(macgyver, (column * len_sprites, line * len_sprites))
+					Maze.mac_first = (line, column)
 
 	@staticmethod
 	def isWall(position):
 		x, y = position
-		if struct[x][y] == 0:
+		if int(Maze.struct[x][y]) == 0:
 			return 1
 		else:
 			return 0

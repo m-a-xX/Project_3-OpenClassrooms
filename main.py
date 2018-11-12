@@ -7,13 +7,21 @@ import pygame
 from pygame.locals import *
 
 from constants import *
-from classes import *
-from display import *
+from maze import *
+from characters import *
+from items import *
 
 pygame.init()
 
-window = pygame.display.set_mode((side_window, side_window))
-pygame.display.set_icon(title)
+"""Generate the maze"""
+maze = Maze('structure.txt')
+maze.read()
+
+"""Generate items positions"""
+item1_pos = Items.randomPosition(Maze.struct)
+item2_pos = Items.randomPosition(Maze.struct)
+item3_pos = Items.randomPosition(Maze.struct)
+MacGyver.act_position = (1, 0)
 
 """Principal loop"""
 game = 1
@@ -22,25 +30,23 @@ while game:
 		if event.type == pygame.QUIT:
 			game = 0
 
-	"""Generate and print the maze"""
-	maze = Maze(grid)
-	print.Maze()
-
-	"""Generate and print items"""
-	item1_pos = randomPosition.Items(struct)
-	window.blit(item_1, (item1_pos))
-	item2_pos = randomPosition.Items(struct)
-	window.blit(item_2, (item2_pos))
-	item3_pos = randomPosition.Items(struct)
-	window.blit(item_3, (item3_pos))
+	"""Print the maze"""
+	maze.print()
 	pygame.display.flip()
 
-	"""Core of the game"""
+
+	"""Print items"""
+	Items.checkItems(item1_pos, item2_pos, item3_pos, MacGyver.act_position)
+
+	MacGyver.movements((MacGyver.act_position))
+	MacGyver.printMg((MacGyver.pix_position))
+
+	"""Core of the game
 	win = 0
 	while not win:
-		act_position = first_position
-		movements.MacGyver(firstPosition.Characters(act_position))
-		printMg.MacGyver(act_position)
-		checkItems.Items(item1_pos, item2_pos, item3_pos, act_position)
-		if asleepGuardian.MacGyver(guardian_position, act_position):
+		MacGyver.movements(Characters.firstPosition(act_position))
+		MacGyver.printMg(act_position)
+		Items.checkItems(item1_pos, item2_pos, item3_pos, act_position)
+		if MacGyver.asleepGuardian(guardian_position, act_position):
 			win = 1
+"""
