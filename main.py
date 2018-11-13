@@ -44,14 +44,11 @@ while GAME:
             pygame.time.wait(5000)
             pygame.display.quit()
             pygame.quit()
+            exit()
         if MacGyver.asleep_guardian(GUARDIAN_POS, MacGyver.act_position) == 2:
             WINDOW.blit(YOULOST, (0, 0))
             pygame.display.flip()
             pygame.time.wait(5000)
             pygame.display.quit()
             pygame.quit()
-
-    MacGyver.movements((MacGyver.act_position))
-    MacGyver.print_mg((MacGyver.pix_position))
-
-pygame.quit()
+            exit()

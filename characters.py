@@ -2,7 +2,7 @@
 
 import random
 import pygame
-from pygame.locals import KEYDOWN, K_LEFT, K_RIGHT, K_UP, K_DOWN
+from pygame.locals import KEYDOWN, K_LEFT, K_RIGHT, K_UP, K_DOWN, K_ESCAPE
 
 from constants import MACGYVER, BLACK_SPRITE, LEN_SPR, WINDOW
 from maze import Maze
@@ -74,6 +74,9 @@ class MacGyver(Characters):
                     pos_x += 1
                     if Maze.is_wall((pos_x, pos_y)):
                         pos_x -= 1
+                if event.key == K_ESCAPE:
+                    pygame.display.quit()
+                    pygame.quit()
         MacGyver.act_position = (pos_x, pos_y)
         MacGyver.pix_position = (pos_y * LEN_SPR, pos_x * LEN_SPR)
         if MacGyver.act_position != position:
@@ -84,7 +87,6 @@ class MacGyver(Characters):
     @staticmethod
     def find_macgyver():
         """Find Macgyver in the structure"""
-
         for pos_x in range(0, 15):
             for pos_y in range(0, 15):
                 if int(Maze.struct[pos_x][pos_y]) == 2:
