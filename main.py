@@ -15,9 +15,9 @@ pygame.init()
 MAZE = Maze('structure.txt')
 MAZE.read()
 
-ITEM1_POS = Items.random_position(Maze.struct)
-ITEM2_POS = Items.random_position(Maze.struct)
-ITEM3_POS = Items.random_position(Maze.struct)
+ITEM1_POS = Items.random_position()
+ITEM2_POS = Items.random_position()
+ITEM3_POS = Items.random_position()
 
 MacGyver.act_position = (MacGyver.find_macgyver())
 GUARDIAN_POS = (Characters.find_guardian())

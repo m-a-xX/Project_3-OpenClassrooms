@@ -46,7 +46,7 @@ class Items:
 
 
     @staticmethod
-    def random_position(struct):
+    def random_position():
         """Generate an aleatory position"""
         pos_x = random.randint(0, 14)
         pos_y = random.randint(0, 14)
