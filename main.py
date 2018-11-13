@@ -4,59 +4,54 @@ UTF-8"""
 
 import random
 import pygame
-from pygame.locals import *
 
-from constants import *
-from maze import *
-from characters import *
-from items import *
+from constants import WINDOW, YOUWIN, YOULOST
+from maze import Maze
+from characters import Characters, MacGyver
+from items import Items
 
 pygame.init()
 
-"""Generate the maze"""
-maze = Maze('structure.txt')
-maze.read()
+MAZE = Maze('structure.txt')
+MAZE.read()
 
-"""Generate items positions"""
-item1_pos = Items.random_position(Maze.struct)
-item2_pos = Items.random_position(Maze.struct)
-item3_pos = Items.random_position(Maze.struct)
+ITEM1_POS = Items.random_position(Maze.struct)
+ITEM2_POS = Items.random_position(Maze.struct)
+ITEM3_POS = Items.random_position(Maze.struct)
 
 MacGyver.act_position = (MacGyver.find_macgyver())
-guardian_pos = (Characters.find_guardian())
+GUARDIAN_POS = (Characters.find_guardian())
 
 """Principal loop"""
-game = 1
-while game:
-	for event in pygame.event.get():
-		if event.type == pygame.QUIT:
-			game = 0
+GAME = 1
+while GAME:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            GAME = 0
 
-	"""Print the maze"""
-	maze.display()
-	pygame.display.flip()
+    MAZE.display()
+    pygame.display.flip()
 
+    Items.check_items(ITEM1_POS, ITEM2_POS, ITEM3_POS, MacGyver.act_position)
 
-	"""Print items"""
-	Items.check_items(item1_pos, item2_pos, item3_pos, MacGyver.act_position)
+    MacGyver.movements((MacGyver.act_position))
+    MacGyver.print_mg((MacGyver.pix_position))
 
-	"""Core of the game"""
-	MacGyver.movements((MacGyver.act_position))
-	MacGyver.print_mg((MacGyver.pix_position))
-	if MacGyver.asleep_guardian(guardian_pos, MacGyver.act_position) != 0:
-		if MacGyver.asleep_guardian(guardian_pos, MacGyver.act_position) == 1:
-			window.blit(youwin, (0, 0))
-			pygame.display.flip()
-			pygame.time.wait(5000)
-			pygame.display.quit()
-			pygame.quit()
-		if MacGyver.asleep_guardian(guardian_pos, MacGyver.act_position) == 2:
-			window.blit(youlost, (0, 0))
-			pygame.display.flip()
-			pygame.time.wait(5000)
-			pygame.display.quit()
-			pygame.quit()
-	MacGyver.movements((MacGyver.act_position))
-	MacGyver.print_mg((MacGyver.pix_position))
+    if MacGyver.asleep_guardian(GUARDIAN_POS, MacGyver.act_position) != 0:
+        if MacGyver.asleep_guardian(GUARDIAN_POS, MacGyver.act_position) == 1:
+            WINDOW.blit(YOUWIN, (0, 0))
+            pygame.display.flip()
+            pygame.time.wait(5000)
+            pygame.display.quit()
+            pygame.quit()
+        if MacGyver.asleep_guardian(GUARDIAN_POS, MacGyver.act_position) == 2:
+            WINDOW.blit(YOULOST, (0, 0))
+            pygame.display.flip()
+            pygame.time.wait(5000)
+            pygame.display.quit()
+            pygame.quit()
+
+    MacGyver.movements((MacGyver.act_position))
+    MacGyver.print_mg((MacGyver.pix_position))
 
 pygame.quit()

@@ -1,16 +1,17 @@
 """This file concern the gestion of characters"""
 
+import random
 import pygame
-from pygame.locals import *
+from pygame.locals import KEYDOWN, K_LEFT, K_RIGHT, K_UP, K_DOWN
 
-from constants import guardian, macgyver, black_sprite, len_spr
-from maze import *
+from constants import MACGYVER, BLACK_SPRITE, LEN_SPR, WINDOW
+from maze import Maze
 from items import *
 
 pygame.init()
 
-"""Manage characters and moves"""
 class Characters:
+    """Manage characters and moves"""
 
     def __init__(self, dep_x, dep_y, image):
         self.dep_x = dep_x
@@ -19,27 +20,30 @@ class Characters:
 
     @staticmethod
     def find_guardian():
+        """Find the guardian in the structure"""
         for pos_x in range(0, 15):
             for pos_y in range(0, 15):
                 if int(Maze.struct[pos_x][pos_y]) == 9:
                     return (pos_x, pos_y)
 
 
-"""Child class of Characters for all specifics things to MacGyver"""
 class MacGyver(Characters):
+    """Child class of Characters for all specifics things to MacGyver"""
 
     act_position = (0, 0)
 
     @staticmethod
     def print_mg(position):
-        window.blit(macgyver, (position))
+        """Print Mg on the new position and print a black sprite on the old"""
+        WINDOW.blit(MACGYVER, (position))
         if MacGyver.old_position != 0:
             pos_y, pos_x = MacGyver.old_position
-            window.blit(black_sprite, (pos_x * len_spr, pos_y * len_spr))
+            WINDOW.blit(BLACK_SPRITE, (pos_x * LEN_SPR, pos_y * LEN_SPR))
         pygame.display.flip()
 
     @staticmethod
     def asleep_guardian(guardian_position, macgyver_position):
+        """Check if the 3 items are captured and if Mg reached the exit"""
         if not guardian_position == macgyver_position:
             return 0
         if guardian_position == macgyver_position:
@@ -48,6 +52,7 @@ class MacGyver(Characters):
 
     @staticmethod
     def movements(position):
+        """Interpret keyboard input and manage the differents positions"""
         pos_x, pos_y = position
         for event in pygame.event.get():
             if event.type == KEYDOWN:
@@ -68,7 +73,7 @@ class MacGyver(Characters):
                     if Maze.is_wall((pos_x, pos_y)):
                         pos_x -= 1
         MacGyver.act_position = (pos_x, pos_y)
-        MacGyver.pix_position = (pos_y * len_spr, pos_x * len_spr)
+        MacGyver.pix_position = (pos_y * LEN_SPR, pos_x * LEN_SPR)
         if MacGyver.act_position != position:
             MacGyver.old_position = position
         else:
@@ -76,6 +81,8 @@ class MacGyver(Characters):
 
     @staticmethod
     def find_macgyver():
+        """Find Macgyver in the structure"""
+
         for pos_x in range(0, 15):
             for pos_y in range(0, 15):
                 if int(Maze.struct[pos_x][pos_y]) == 2:
