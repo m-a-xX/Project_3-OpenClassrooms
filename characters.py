@@ -6,7 +6,7 @@ from pygame.locals import KEYDOWN, K_LEFT, K_RIGHT, K_UP, K_DOWN
 
 from constants import MACGYVER, BLACK_SPRITE, LEN_SPR, WINDOW
 from maze import Maze
-from items import *
+from items import Items
 
 pygame.init()
 
@@ -49,6 +49,8 @@ class MacGyver(Characters):
         if guardian_position == macgyver_position:
             if Items.got_i1 and Items.got_i2 and Items.got_i3:
                 return 1
+            else:
+                return 2
 
     @staticmethod
     def movements(position):

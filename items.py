@@ -4,7 +4,7 @@ import random
 import pygame
 
 from constants import BLACK_SPRITE, ITEM_1, ITEM_2, ITEM_3, LEN_SPR, WINDOW
-from maze import *
+from maze import Maze
 
 class Items:
     """Manage the items"""
