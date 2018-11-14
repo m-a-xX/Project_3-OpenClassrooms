@@ -32,16 +32,10 @@ class Items:
             Items.got_i3 = 1
         if Items.got_i1 == 0:
             WINDOW.blit(ITEM_1, (pos_item1))
-        else:
-            WINDOW.blit(BLACK_SPRITE, (pos_item1))
         if Items.got_i2 == 0:
             WINDOW.blit(ITEM_2, (pos_item2))
-        else:
-            WINDOW.blit(BLACK_SPRITE, (pos_item2))
         if Items.got_i3 == 0:
             WINDOW.blit(ITEM_3, (pos_item3))
-        else:
-            WINDOW.blit(BLACK_SPRITE, (pos_item3))
         pygame.display.flip()
 
 

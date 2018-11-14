@@ -52,3 +52,6 @@ while GAME:
             pygame.display.quit()
             pygame.quit()
             exit()
+
+    if Characters.quit():
+        GAME = 0

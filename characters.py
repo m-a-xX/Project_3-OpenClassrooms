@@ -26,6 +26,16 @@ class Characters:
                 if int(Maze.struct[pos_x][pos_y]) == 9:
                     return (pos_x, pos_y)
 
+    @staticmethod
+    def quit():
+        """Quit the game if the player press ESC"""
+        for event in pygame.event.get():
+            if event.type == KEYDOWN:
+                if event.key == K_ESCAPE:
+                    pygame.display.quit()
+                    pygame.quit()
+                    return 1
+
 
 class MacGyver(Characters):
     """Child class of Characters for all specifics things to MacGyver"""
@@ -74,9 +84,6 @@ class MacGyver(Characters):
                     pos_x += 1
                     if Maze.is_wall((pos_x, pos_y)):
                         pos_x -= 1
-                if event.key == K_ESCAPE:
-                    pygame.display.quit()
-                    pygame.quit()
         MacGyver.act_position = (pos_x, pos_y)
         MacGyver.pix_position = (pos_y * LEN_SPR, pos_x * LEN_SPR)
         if MacGyver.act_position != position:
