@@ -1,4 +1,4 @@
-"""Jeu de labyrinthe
+"""Maze game
 Python3
 UTF-8"""
 
@@ -25,33 +25,29 @@ GUARDIAN_POS = (Characters.find_guardian())
 """Principal loop"""
 GAME = 1
 while GAME:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            GAME = 0
-
     MAZE.display()
     pygame.display.flip()
 
     Items.check_items(ITEM1_POS, ITEM2_POS, ITEM3_POS, MacGyver.act_position)
 
-    MacGyver.movements((MacGyver.act_position))
+    MacGyver.movements_and_quit((MacGyver.act_position))
     MacGyver.print_mg((MacGyver.pix_position))
 
     if MacGyver.asleep_guardian(GUARDIAN_POS, MacGyver.act_position) != 0:
         if MacGyver.asleep_guardian(GUARDIAN_POS, MacGyver.act_position) == 1:
+            print("You win")
             WINDOW.blit(YOUWIN, (0, 0))
             pygame.display.flip()
             pygame.time.wait(5000)
-            pygame.display.quit()
-            pygame.quit()
-            exit()
+            GAME = 0
+
         if MacGyver.asleep_guardian(GUARDIAN_POS, MacGyver.act_position) == 2:
+            print("You lost")
             WINDOW.blit(YOULOST, (0, 0))
             pygame.display.flip()
             pygame.time.wait(5000)
-            pygame.display.quit()
-            pygame.quit()
-            exit()
+            GAME = 0
 
-    if Characters.quit():
-        GAME = 0
+pygame.display.quit()
+pygame.quit()
+exit()
