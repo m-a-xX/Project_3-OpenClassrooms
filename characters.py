@@ -78,9 +78,9 @@ class MacGyver(Characters):
                     pos_x += 1
                     if Maze.is_wall((pos_x, pos_y)):
                         pos_x -= 1
-        MacGyver.act_position = (pos_x, pos_y)
+        MacGyver.act_pos = (pos_x, pos_y)
         MacGyver.pix_position = (pos_y * LEN_SPR, pos_x * LEN_SPR)
-        if MacGyver.act_position != position:
+        if MacGyver.act_pos != position:
             MacGyver.old_position = position
         else:
             MacGyver.old_position = 0
