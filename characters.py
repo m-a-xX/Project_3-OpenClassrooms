@@ -58,10 +58,14 @@ class MacGyver(Characters):
         pos_x, pos_y = position
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                GAME = 0
+                pygame.display.quit()
+                pygame.quit()
+                exit()
             if event.type == KEYDOWN:
                 if event.key == K_ESCAPE:
-                    GAME = 0
+                    pygame.display.quit()
+                    pygame.quit()
+                    exit()
                 if event.key == K_LEFT:
                     pos_y -= 1
                     if Maze.is_wall((pos_x, pos_y)):
