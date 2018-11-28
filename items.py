@@ -47,7 +47,7 @@ class Items:
         while int(Maze.struct[pos_y][pos_x]) != 1:
             pos_x = random.randint(0, 14)
             pos_y = random.randint(0, 14)
-        Maze.struct[pos_y][pos_x] = 3
+        Maze.struct[pos_y][pos_x] = '3'
         pos_x *= LEN_SPR
         pos_y *= LEN_SPR
         return(pos_x, pos_y)
