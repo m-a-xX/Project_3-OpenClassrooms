@@ -23,7 +23,7 @@ class Characters:
         """Find the guardian in the structure"""
         for pos_x in range(0, 15):
             for pos_y in range(0, 15):
-                if int(Maze.struct[pos_x][pos_y]) == 9:
+                if Maze.struct[pos_x][pos_y] == '9':
                     return (pos_x, pos_y)
 
 
@@ -94,5 +94,5 @@ class MacGyver(Characters):
         """Find Macgyver in the structure"""
         for pos_x in range(0, 15):
             for pos_y in range(0, 15):
-                if int(Maze.struct[pos_x][pos_y]) == 2:
+                if Maze.struct[pos_x][pos_y] == '2':
                     return (pos_x, pos_y)

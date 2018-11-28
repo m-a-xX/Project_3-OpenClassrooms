@@ -26,14 +26,14 @@ class Maze:
         """Print the games's map"""
         for line in range(0, 15):
             for column in range(0, 15):
-                if int(Maze.struct[line][column]) == 0:
+                if Maze.struct[line][column] == '0':
                     WINDOW.blit(WALL, (column * LEN_SPR, line * LEN_SPR))
-                if int(Maze.struct[line][column]) == 9:
+                if Maze.struct[line][column] == '9':
                     WINDOW.blit(GUARDIAN, (column * LEN_SPR, line * LEN_SPR))
 
     @staticmethod
     def is_wall(position):
         """Boolean returns 1 if the movement is possible"""
         pos_x, pos_y = position
-        if int(Maze.struct[pos_x][pos_y]) == 0:
+        if Maze.struct[pos_x][pos_y] == '0':
             return 1
