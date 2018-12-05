@@ -6,6 +6,7 @@ import pygame
 from constants import BLACK_SPRITE, ITEM_1, ITEM_2, ITEM_3, LEN_SPR, WINDOW
 from maze import Maze
 
+
 class Items:
     """Manage the items"""
 
@@ -15,7 +16,6 @@ class Items:
 
     def __init__(self, image):
         self.image = image
-
 
     @staticmethod
     def check_items(pos_item1, pos_item2, pos_item3, pos_macgyver):
@@ -37,7 +37,6 @@ class Items:
         if Items.got_i3 == 0:
             WINDOW.blit(ITEM_3, (pos_item3))
         pygame.display.flip()
-
 
     @staticmethod
     def random_position():

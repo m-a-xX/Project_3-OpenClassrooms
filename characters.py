@@ -10,6 +10,7 @@ from items import Items
 
 pygame.init()
 
+
 class Characters:
     """Manage characters and moves"""
 

@@ -3,6 +3,7 @@ txt file and the generation of the map"""
 
 from constants import WALL, GUARDIAN, WINDOW, LEN_SPR
 
+
 class Maze:
 
     """Generate the maze"""
